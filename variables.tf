@@ -27,5 +27,24 @@ variable "public_subnets" {
     "public_subnet_2" = 2
     "public_subnet_3" = 3
   }
+}
+
+variable "variables_sub_cidr" {
+  description = "Subnet CIDR"
+  type        = string
+  default     = "10.0.0.0/16"
+}
+
+variable "sub_az" {
+  description = "Subnet Availability Zone"
+  type        = string
+  default     = "us-east-1a"
 
 }
+
+variable "variables_sub_auto_ip" {
+  description = "Subnet Auto IP"
+  type        = bool
+  default     = true
+}
+  
