@@ -64,7 +64,7 @@ resource "aws_key_pair" "generated" {
 
 # Resource to create a new security group
 resource "aws_security_group" "tf-vb-sg" {
-  count = length(data.aws_security_group.existing_sg.id) == 0 ? 1 : 0
+  # count = length(data.aws_security_group.existing_sg.id) == 0 ? 1 : 0
 
   name        = "tf-vb-sg"
   description = "Allow SSH, HTTP, and HTTPS traffic"
@@ -95,5 +95,5 @@ module "server" {
   ami_id          = data.aws_ami.latest_amzn2.id
   subnet_id       = data.aws_subnet.selected_subnet.id
   key_name        = data.aws_key_pair.existing_key.id != "" ? data.aws_key_pair.existing_key.key_name : aws_key_pair.generated[0].key_name
-  security_groups = length(data.aws_security_group.existing_sg.id) == 0 ? [aws_security_group.tf-vb-sg[0].id] : [data.aws_security_group.existing_sg.id]
+  security_groups = [aws_security_group.tf-vb-sg.id]
 }
