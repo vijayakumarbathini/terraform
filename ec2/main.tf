@@ -53,14 +53,14 @@ resource "aws_key_pair" "generated" {
 }
 
 # Data source to fetch existing security group
-data "aws_security_group" "existing_sg" {
-  filter {
-    name = "group-name"
-    # Replace the value with the name of the security group you want to use
-    values = ["tf-vb-sg"]
-  }
-  vpc_id = "vpc-95a470f3"
-}
+# data "aws_security_group" "existing_sg" {
+#   filter {
+#     name = "group-name"
+#     # Replace the value with the name of the security group you want to use
+#     values = ["tf-vb-sg"]
+#   }
+#   vpc_id = "vpc-95a470f3"
+# }
 
 # Resource to create a new security group
 resource "aws_security_group" "tf-vb-sg" {
