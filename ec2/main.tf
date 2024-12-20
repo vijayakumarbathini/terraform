@@ -57,7 +57,7 @@ data "aws_security_group" "existing_sg" {
   filter {
     name = "group-name"
     # Replace the value with the name of the security group you want to use
-    values = ["tfc-vb-sg"]
+    values = ["tf-vb-sg"]
   }
   vpc_id = "vpc-95a470f3"
 }
@@ -66,7 +66,7 @@ data "aws_security_group" "existing_sg" {
 resource "aws_security_group" "tf-vb-sg" {
   count = length(data.aws_security_group.existing_sg.id) == 0 ? 1 : 0
 
-  name        = "tfc-vb-sg"
+  name        = "tf-vb-sg"
   description = "Allow SSH, HTTP, and HTTPS traffic"
   vpc_id      = "vpc-95a470f3"
 
