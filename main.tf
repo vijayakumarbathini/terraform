@@ -182,3 +182,24 @@ resource "aws_security_group" "my-new-security-group" {
     Purpose = "Intro to Resource Blocks Lab"
   }
 }
+
+# Create an SSH Key Pair
+
+resource "tls_private_key" "generated" {
+  algorithm = "RSA"
+}
+
+resource "local_file" "private_key_pem" {
+  content  = tls_private_key.generated.private_key_pem
+  filename = "MyAWSKey.pem"
+}
+
+# Using SSH Key pair in Lab
+resource "aws_key_pair" "generated" {
+  key_name   = "vbathini_lab_key"
+  public_key = tls_private_key.generated.public_key_openssh
+
+  lifecycle {
+    ignore_changes = [key_name]
+  }
+}
