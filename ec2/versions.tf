@@ -1,21 +1,21 @@
 terraform {
 
-  backend "s3" {
+  # backend "s3" {
 
-    bucket = "terraform-remote-state-vbathini-lab"
-    key    = "vbathini_lab/terraform.tfstate"
-    region = "us-east-1"
+  #   bucket = "terraform-remote-state-vbathini-lab"
+  #   key    = "vbathini_lab/terraform.tfstate"
+  #   region = "us-east-1"
 
-  }
-
-  # backend "remote" {
-  #   hostname     = "app.terraform.io"
-  #   organization = "vbathini_poc"
-
-  #   workspaces {
-  #     name = "CLI"
-  #   }
   # }
+
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "Devops-vbathini"
+
+    workspaces {
+      name = "terraform-pic"
+    }
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
