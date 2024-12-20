@@ -20,13 +20,13 @@ variable "ingress_rules" {
     "ssh" = {
       from_port   = 22
       to_port     = 22
-      protocol    = "ssh"
+      protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
     },
     "http" = {
       from_port   = 80
       to_port     = 80
-      protocol    = "http"
+      protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
     }
   }
